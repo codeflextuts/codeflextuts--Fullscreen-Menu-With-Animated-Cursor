@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>Navigation with Mousemove Button | Codeflex</title>
+   <link rel="stylesheet" href="style.css">
+   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
+</head>
+<body>
+
+      <h1>Fullscreen Navigation</h1>
+
+      <div class="menu-btn">
+            <div class="open">open</div>
+            <div class="close">close</div>
+      </div>
+
+      <div class="nav">
+            <ul>
+                  <li>Home</li>
+                  <li>Our Story</li>
+                  <li>Services</li>
+                  <li>Our Team</li>
+                  <li>Contact</li>
+            </ul>
+
+            <div class="mail">codeflextuts@gmail.com</div>
+      </div>
+
+      <script type="text/javascript">
+
+      $(document).mousemove(function(e) {
+            $('.menu-btn').css({left: e.pageX, top: e.pageY});
+      });
+
+      var t1 = new TimelineMax({paused: true});
+
+      t1.to(".open", 0.5, {
+         opacity: 0,
+         ease: Expo.easeInOut
+      });
+
+      t1.from(".close", 0.5, {
+         opacity: 0,
+         ease: Expo.easeInOut
+      });
+
+      t1.from(".nav", 0.5, {
+         opacity: 0,
+         ease: Expo.easeInOut
+      });
+
+      t1.staggerFrom(".nav ul li", 1, {
+         opacity: 0,
+         ease: Expo.easeInOut
+      }, 0.1);
+
+      t1.from(".mail", 1, {
+         opacity: 0,
+         delay: -0.5,
+         ease: Expo.easeInOut
+      });
+
+      t1.reverse();
+
+      $(document).on("click", ".menu-btn", function() {
+            t1.reversed(!t1.reversed());
+      });
+
+      </script>
+
+</body>
+</html>
